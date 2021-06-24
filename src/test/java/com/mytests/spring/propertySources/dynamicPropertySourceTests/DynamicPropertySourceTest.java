@@ -15,14 +15,14 @@ public class DynamicPropertySourceTest {
 
     private static MyContainer provider = new MyContainer();
 
-    @DynamicPropertySource  // no validation for the method signature
+    @DynamicPropertySource  // no validation for the method signature - https://youtrack.jetbrains.com/issue/IDEA-272357
     static void messProperties(DynamicPropertyRegistry registry) {
         registry.add("prop1", provider::firstProperty);
         registry.add("prop2", provider::secondProperty);
     }
-    @Value("${prop1}")  // not resolved
+    @Value("${prop1}")  // not resolved - https://youtrack.jetbrains.com/issue/IDEA-272360
     String mess1;
-    @Value("#{'${prop2}'}") // not resolved
+    @Value("#{'${prop2}'}") // not resolved - https://youtrack.jetbrains.com/issue/IDEA-272360
     String mess2;
 
     @Test

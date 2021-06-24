@@ -20,6 +20,7 @@ public class MyConfig1TestWithTestProperties {
     @Autowired
     private MyCompo1 myCompo1;
 
+    // https://youtrack.jetbrains.com/issue/IDEA-272397
     // placeholders are resolved  to properties from the configuration class's propertySource,
     // but the ones specified in the @TestPropertySource should be used
     @Value("${my.config1.str1}") String str1;

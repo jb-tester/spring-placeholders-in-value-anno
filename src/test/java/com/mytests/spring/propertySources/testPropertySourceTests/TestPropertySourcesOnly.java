@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @TestPropertySource({"/testProperties.properties", "/extraTestProperties.properties"})
 public class TestPropertySourcesOnly {
 
+    // https://youtrack.jetbrains.com/issue/IDEA-272397
     // properties are not resolved, though the property files are resolved in the @TestPropertySource annotation:
     @Value("${my.test.props.str1}") String str1;
     @Value("#{'${my.test.props.str2}'}") String str2;
