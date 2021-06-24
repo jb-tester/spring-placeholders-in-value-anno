@@ -12,8 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ContextConfiguration(locations = "/propertyPlaceholderConfigurerConfig.xml")
 public class XmlPropertyPlaceholderConfigurerTest {
 
+    // https://youtrack.jetbrains.com/issue/IDEA-272406
     @Value("${my.xml.prop1}") String str1; // ok
     @Value("#{'${my.xml.prop2}'}") String str2; // property key is shown as not used
+    @Value("#{'${my.xml.prop5}' + ' ' + '${my.xml.prop6}'}") String str56; // both keys are shown as unused
     @Autowired
     private String xmlStrings1;
     @Autowired

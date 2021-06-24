@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:xmlProperties.properties"/>
-    </bean>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--<context:property-placeholder location="${some.missing.property:classpath:}/xmlProperties.properties"/>--> <!-- https://youtrack.jetbrains.com/issue/IDEA-237794 -->
+    <context:property-placeholder location="classpath:/xmlProperties.properties"/>
+
     <bean id="xmlStrings1" class="java.lang.String">
         <constructor-arg value="${my.xml.prop3}"/> <!-- ok -->
     </bean>
+    <!-- https://youtrack.jetbrains.com/issue/IDEA-272406 -->
     <bean id="xmlStrings2" class="java.lang.String">
         <constructor-arg value="#{'${my.xml.prop4}'}"/> <!-- no navigation, property is shown as unused -->
     </bean>
+    <bean id="xmlStrings3" class="java.lang.String">
+        <constructor-arg value="#{'${my.xml.prop5}' + ' ' + '${my.xml.prop6}'}"/> <!-- no navigation, property is shown as unused -->
+    </bean>
+
 </beans>
