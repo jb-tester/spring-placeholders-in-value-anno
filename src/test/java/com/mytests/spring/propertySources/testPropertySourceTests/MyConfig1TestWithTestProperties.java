@@ -26,11 +26,12 @@ public class MyConfig1TestWithTestProperties {
     @Value("${my.config1.str1}") String str1;
     @Value("#{'${my.config1.str2}'}") String str2;
     @Value("${my.config1.str3}") String str3;
+    @Value("${my.config1.str4}") String str4;
 
     @Test
     public void testPropertySources(){
-        String stringsFromValueAnnotations = str1+" "+str2+" "+str3;
-        Assert.assertEquals(stringsFromValueAnnotations,"test mycompo1 str1 test mycompo1 str2 test mycompo1 str3");
+        String stringsFromValueAnnotations = str1+" "+str2+" "+str3+" "+str4;
+        Assert.assertEquals(stringsFromValueAnnotations,"test mycompo1 str1 test mycompo1 str2 test mycompo1 str3 test mycompo1 str4");
     }
     @Test
     public void getMyCompo1Strings() {
