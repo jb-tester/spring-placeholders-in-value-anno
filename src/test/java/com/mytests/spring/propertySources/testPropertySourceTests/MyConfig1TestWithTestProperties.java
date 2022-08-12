@@ -2,6 +2,7 @@ package com.mytests.spring.propertySources.testPropertySourceTests;
 
 import com.mytests.spring.propertySources.components.MyCompo1;
 import com.mytests.spring.propertySources.configs.MyConfig1;
+import com.mytests.spring.propertySources.myAnnotations.Str3;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +26,7 @@ public class MyConfig1TestWithTestProperties {
     // but the ones specified in the @TestPropertySource should be used
     @Value("${my.config1.str1}") String str1;
     @Value("#{'${my.config1.str2}'}") String str2;
-    @Value("${my.config1.str3}") String str3;
+    @Str3 String str3;
     @Value("${my.config1.str4}") String str4;
 
     @Test
@@ -35,11 +36,11 @@ public class MyConfig1TestWithTestProperties {
     }
     @Test
     public void getMyCompo1Strings() {
-        Assert.assertEquals(myCompo1.getMyCompo1Strings(),"test mycompo1 str1 test mycompo1 str2");
+        Assert.assertEquals(myCompo1.getMyCompo1Strings(),"test mycompo1 str1 test mycompo1 str2 test mycompo1 str3");
     }
     @Test
     public void testSamePropertiesAreUsed(){
-        String stringsFromValueAnnotations = str1+" "+str2;
+        String stringsFromValueAnnotations = str1+" "+str2+" "+str3;
         Assert.assertEquals(myCompo1.getMyCompo1Strings(),stringsFromValueAnnotations);
     }
 }
