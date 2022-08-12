@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ContextConfiguration(locations = "/beans.xml")
 public class DynamicPropertySourceTest {
 
-    private static MyContainer provider = new MyContainer();
+    private static final MyContainer provider = new MyContainer();
 
     @DynamicPropertySource  // no validation for the method signature - https://youtrack.jetbrains.com/issue/IDEA-272357
     static void messProperties(DynamicPropertyRegistry registry) {
@@ -22,7 +22,7 @@ public class DynamicPropertySourceTest {
     }
     @Value("${prop1}")  // not resolved - https://youtrack.jetbrains.com/issue/IDEA-272360
     String mess1;
-    @Value("#{'${prop2}'}") // not resolved - https://youtrack.jetbrains.com/issue/IDEA-272360
+    @Value("${prop2}") // not resolved - https://youtrack.jetbrains.com/issue/IDEA-272360
     String mess2;
 
     @Test
